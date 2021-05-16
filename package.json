@@ -1,0 +1,40 @@
+{
+  "name": "countingbot",
+  "version": "1.0.0",
+  "date": "16/05/2021",
+  "dateFormat": "DD/MM/YYYY",
+  "description": "Counting",
+  "main": "index.js",
+  "dependencies": {
+    "@vukkyutils/localization": "^2.2.0",
+    "chalk": "^4.1.0",
+    "chokidar": "^3.5.1",
+    "comma-number": "^2.0.1",
+    "discord.js": "^12.5.2",
+    "dotenv": "^8.2.0",
+    "mysql": "^2.18.1",
+    "ora": "^5.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "inquirer": "^8.0.0",
+    "npm": "^7.12.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "setup": "node setup.js",
+    "lint": "npx eslint **/*.js",
+    "lintfix": "npx eslint **/*.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtheskeleton/countingBot.git"
+  },
+  "author": "Skelly",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "about:blank"
+  },
+  "homepage": "about:blank"
+}

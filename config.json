@@ -1,0 +1,29 @@
+{
+    "misc": {
+        "invalidCmdReminder": true,
+        "prefixReminder": true,
+        "owner": [
+            "708333380525228082",
+            "125644326037487616"
+        ],
+        "mysql": true,
+        "emoji": {
+            "error": "<:error:759701620777943062>",
+            "loading": "<a:offlinegif:757979855924101220>"
+        }
+    },
+    "counting": {
+        "enabled": true,
+        "channelName": "counting",
+        "customEmoji": {
+            "69420": "👀",
+            "10000": "🤯",
+            "1000": "🏆",
+            "420": "👀",
+            "100": "💯",
+            "69": "👀",
+            "42": "🧑‍🚀",
+            "21": "🧠"
+        }
+    }
+}

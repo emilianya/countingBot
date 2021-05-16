@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "eamodio.gitlens",
+        "ms-vsliveshare.vsliveshare",
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens"
+    ]
+}
