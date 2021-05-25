@@ -31,14 +31,7 @@ var fields = { //and defaults
 
 };
 
-function IsJsonString(str) {
-	try {
-		JSON.parse(str);
-	} catch (e) {
-		return false;
-	}
-	return true;
-}
+
 module.exports = {
 	name: "settings",
 	description: "Change your servers settings!",
@@ -62,9 +55,12 @@ module.exports = {
 					if (err) {
 						if(err.code == "ER_TABLE_EXISTS_ERROR") {
 							console.log(`${cheader} ${warn("Table already exists")}`);
+							onReady(message, args);
+							con.end();
 						} else {
 							console.log(`${cheader} ${error("Table creation failed")}`);
 							console.log(err);
+							message.channel.send("An error has occurred, changes haven't been saved");
 						}
 					} else {
 						for (let key in fields) {
@@ -85,6 +81,8 @@ module.exports = {
 								});
 							}
 						}
+						onReady(message, args);
+						con.end();
 					}
 				});
 			}
@@ -92,3 +90,32 @@ module.exports = {
 		});
 	},
 };
+
+function onReady(message, args) {
+	if(!args[0]) {
+		message.channel.send("Arguments missing! `set <option> <value>` or `get <option>`");
+	} else {
+		var con = mysql.createConnection({
+			host: process.env.SQL_HOST,
+			user: process.env.SQL_USER,
+			password: process.env.SQL_PASS,
+			database: process.env.SQL_DB
+		});
+		if(args[0] == "set") {
+			sql = `UPDATE countingbot.s${message.guild.id} SET value = "${args[2]}" WHERE cfg = "${args[1]}"`;
+			con.query(sql, function (err, result) {
+				if (err) console.log(err);
+				message.channel.send(`Option ${args[1]} is set to ${args[2]}`);
+			});
+			con.end();
+		}
+		if(args[0] == "get") {
+			sql = `SELECT * FROM countingbot.s${message.guild.id} WHERE cfg = "${args[1]}"`;
+			con.query(sql, function (err, result) {
+				if (err) console.log(err);
+				message.channel.send(`Option ${args[1]} is set to ${result[0].value}`);
+			});
+			con.end();
+		}
+	}
+}
